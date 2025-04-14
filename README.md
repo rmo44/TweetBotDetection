@@ -29,10 +29,14 @@ TwitterBotDetector/ ├── backend/ # Flask backend and model │ ├── a
 
 ### 1. Clone the repository
 
-- ```
- git clone https://bitbucket.org/jeb344_0/tweet_bot_detection/src/main/
- cd TwitterBotDetector
--```
+ git clone https://github.com/rmo44/TweetBotDetection.git
+cd TweetBotDetection
+
+### 2. Important file set up
+A piece of our model file was too big to upload onto Github
+Please download the model.zip() file from google drive and save it under the following folder: bert-twitterbot-detector
+This is the file path to that folder:TweetBotDetection/tweetbot/backend/bert-twitterbot-detector
+
 
 ### 2. Set up the Python backend (using Conda recommended)
 cd backend
