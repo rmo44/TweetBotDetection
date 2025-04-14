@@ -1,36 +1,44 @@
-import React, { useState } from 'react';
-import { classifyText } from '../services/api';
+// frontend/src/components/InputForm.jsx
+import { useState } from "react";
+import { classifyText, classifyRandomTweet } from "../services/api";
 
-const InputForm = ({ setResult }) => {
-  const [text, setText] = useState('');
+export default function InputForm({ setResult }) {
+  const [inputText, setInputText] = useState("");
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!text.trim()) return;
+  const handleSubmit = async () => {
+    if (!inputText.trim()) return;
+    const data = await classifyText(inputText);
+    setResult(data);
+  };
 
-    const data = await classifyText(text);
-    if (data) {
-      setResult({ ...data, inputText: text });  // preserve the input for display if needed
-    }
-    // Do not clear the text field so it stays visible
+  const handleRandom = async () => {
+    const data = await classifyRandomTweet();
+    setInputText(data.text);
+    setResult(data);
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col items-center gap-4 w-full max-w-xl">
+    <div className="flex flex-col items-center gap-2">
       <textarea
-        value={text}
-        onChange={(e) => setText(e.target.value)}
+        value={inputText}
+        onChange={(e) => setInputText(e.target.value)}
         placeholder="Enter tweet or post..."
-        className="w-full p-4 rounded-lg border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 h-24 resize-none"
+        className="w-[90%] md:w-[500px] h-24 p-2 rounded-lg shadow border resize-none"
       />
-      <button
-        type="submit"
-        className="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition"
-      >
-        Submit
-      </button>
-    </form>
+      <div className="flex gap-4">
+        <button
+          onClick={handleSubmit}
+          className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        >
+          Submit
+        </button>
+        <button
+          onClick={handleRandom}
+          className="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
+        >
+          Random Tweet
+        </button>
+      </div>
+    </div>
   );
-};
-
-export default InputForm;
+}

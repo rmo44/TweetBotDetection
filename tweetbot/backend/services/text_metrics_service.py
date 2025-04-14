@@ -7,7 +7,7 @@ nlp = spacy.load("en_core_web_sm")
 
 class TextMetricsService:
     @staticmethod
-    def extract_metrics(text):
+    def extract_feature_metrics(text):
         features = {}
 
         # Basic text stats

@@ -1,19 +1,21 @@
-import React from 'react';
-
-const PredictionOutput = ({ prediction, confidence }) => {
-  if (!prediction) return null;
-
-  return (
-    <div className="mt-6">
-      <p className="text-xl font-semibold">
-        <span className="text-gray-700">Prediction:</span>{' '}
-        <span className="text-black">{prediction}</span>
-      </p>
-      <p className="text-md font-medium mt-2 text-gray-700">
-        <span className="font-semibold">Confidence:</span> {confidence}%
-      </p>
-    </div>
-  );
-};
-
-export default PredictionOutput;
+// frontend/src/components/PredictionOutput.jsx
+export default function PredictionOutput({ result }) {
+    if (!result) return null;
+  
+    return (
+      <div className="mt-4 text-center">
+        <p className="text-xl font-semibold">
+          Prediction: <span className="text-indigo-600">{result.prediction}</span>
+        </p>
+        <p className="text-md font-medium">
+          Confidence: <span className="text-gray-800">{result.confidence}%</span>
+        </p>
+        {result.actual_origin && (
+          <p className="text-sm mt-1">
+            Actual: <span className="font-bold">{result.actual_origin}</span>
+          </p>
+        )}
+      </div>
+    );
+  }
+  
