@@ -4,6 +4,8 @@ from transformers import BertTokenizer, BertForSequenceClassification
 import torch
 from pathlib import Path
 
+from services.text_metrics_service import TextMetricsService  # NEW
+
 app = Flask(__name__)
 CORS(app)
 
@@ -45,9 +47,13 @@ def predict():
     label = "Bot" if predicted_class == 1 else "Human"
     confidence = round(probs[predicted_class] * 100, 2)
 
+    # Extract metrics
+    metrics = TextMetricsService.extract_metrics(text)  # NEW
+
     return jsonify({
         "prediction": label,
-        "confidence": confidence
+        "confidence": confidence,
+        "metrics": metrics  # NEW
     })
 
 if __name__ == "__main__":

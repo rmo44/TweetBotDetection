@@ -1,5 +1,5 @@
-// BotDetector.jsx
 import React, { useState } from "react";
+import MetricDisplay from "./components/MetricDisplay";
 
 export default function BotDetector() {
   const [inputText, setInputText] = useState("");
@@ -43,6 +43,9 @@ export default function BotDetector() {
           <p className="text-gray-700">
             <strong>Confidence:</strong> {result.confidence}%
           </p>
+          <div className="mt-6">
+            <MetricDisplay metrics={result.metrics} />
+          </div>
         </div>
       )}
     </div>
