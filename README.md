@@ -29,9 +29,10 @@ TwitterBotDetector/ ├── backend/ # Flask backend and model │ ├── a
 
 ### 1. Clone the repository
 
-- ```bash
+- ```
  git clone https://bitbucket.org/jeb344_0/tweet_bot_detection/src/main/
  cd TwitterBotDetector
+-```
 
 ### 2. Set up the Python backend (using Conda recommended)
 cd backend
