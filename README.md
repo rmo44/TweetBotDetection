@@ -28,30 +28,29 @@ TwitterBotDetector/ ├── backend/ # Flask backend and model │ ├── a
 ## Setup Instructions
 
 ### 1. Clone the repository
-
- git clone https://github.com/rmo44/TweetBotDetection.git
-cd TweetBotDetection
+- git clone https://github.com/rmo44/TweetBotDetection.git
+- cd TweetBotDetection
 
 ### 2. Important file set up
-A piece of our model file was too big to upload onto Github
-Please download the model.zip() file from google drive and save it under the following folder: bert-twitterbot-detector
-This is the file path to that folder:TweetBotDetection/tweetbot/backend/bert-twitterbot-detector
+- A piece of our model file was too big to upload onto Github
+- Please download the model.zip() file from google drive and save it under the following folder: bert-twitterbot-detector
+- This is the file path to that folder:TweetBotDetection/tweetbot/backend/bert-twitterbot-detector
 
 
 ### 2. Set up the Python backend (using Conda recommended)
-cd backend
-conda create -n botdetector python=3.10 -y
-conda activate botdetector
-pip install -r ../requirements.txt
+- cd backend
+- conda create -n botdetector python=3.10 -y
+- conda activate botdetector
+- pip install -r ../requirements.txt
 
 Then run the Flask API server:
-python app.py
+- python app.py
 
 ### 3. Set up the React frontend
 Open a new terminal window or tab:
-cd frontend
-npm install
-npm start
+- cd frontend
+- npm install
+- npm start
 
 ## BERT Model Details
 
