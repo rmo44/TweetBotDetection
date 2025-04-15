@@ -33,7 +33,7 @@ TwitterBotDetector/ ├── backend/ # Flask backend and model │ ├── a
 
 ### 2. Important file set up
 - A piece of our model file was too big to upload onto Github
-- Please download the model.zip() file from google drive and save it under the following folder: bert-twitterbot-detector
+- Please download the model.zip(https://drive.google.com/drive/u/0/folders/1h1PCA3mzvq7tGFqirsWbrRIiYEqljWGE) file from google drive and save it under the following folder: bert-twitterbot-detector
 - This is the file path to that folder:TweetBotDetection/tweetbot/backend/bert-twitterbot-detector
 
 
