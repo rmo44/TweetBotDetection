@@ -37,7 +37,7 @@ TwitterBotDetector/ ├── backend/ # Flask backend and model │ ├── a
 - This is the file path to that folder:TweetBotDetection/tweetbot/backend/bert-twitterbot-detector
 
 
-### 2. Set up the Python backend (using Conda recommended)
+### 3. Set up the Python backend (using Conda recommended)
 - cd backend
 - conda create -n botdetector python=3.10 -y
 - conda activate botdetector
@@ -46,7 +46,7 @@ TwitterBotDetector/ ├── backend/ # Flask backend and model │ ├── a
 Then run the Flask API server:
 - python app.py
 
-### 3. Set up the React frontend
+### 4. Set up the React frontend
 Open a new terminal window or tab:
 - cd frontend
 - npm install
@@ -55,7 +55,13 @@ Open a new terminal window or tab:
 ## BERT Model Details
 
 The classification model used in this project is a fine-tuned version of `bert-base-uncased` from HuggingFace. It has been trained specifically to distinguish between human-written and bot-generated social media posts.
+BERT is a transformers model pretrained on a large corpus of English data in a self-supervised fashion.
+This means it was pretrained on the raw texts only, with no humans labeling them in any way (which is why it can use lots of publicly available data) with an automatic process to generate inputs and labels from those texts. More precisely, it was pretrained with two objectives:
 
+- Masked language modeling (MLM): taking a sentence, the model randomly masks 15% of the words in the input then run the entire masked sentence through the model and has to predict the masked words. This is different from traditional recurrent neural networks (RNNs) that usually see the words one after the other, or from autoregressive models like GPT which internally masks the future tokens. It allows the model to learn a bidirectional representation of the sentence.
+
+- Next sentence prediction (NSP): the models concatenates two masked sentences as inputs during pretraining. Sometimes they correspond to sentences that were next to each other in the original text, sometimes not. The model then has to predict if the two sentences were following each other or not.
+  
 Model characteristics:
 - Architecture: `BertForSequenceClassification`
 - Task: Binary classification (`Human` = 0, `Bot` = 1)
@@ -112,7 +118,7 @@ You are free to use, modify, and distribute this software for personal or commer
 
 ## Authors
 
-**Jordan Burgess** **Rose Ochoa** **Ross** **James** **Nick** 
+**Jordan Burgess** **Rose Ochoa** **Ross Terrazas** **James Cowley** **Nick Esteves** 
 Developed as part of a System Security course project at Texas State University.
 
 
@@ -121,8 +127,13 @@ Developed as part of a System Security course project at Texas State University.
 This project was made possible by the following open-source tools and frameworks:
 
 - [HuggingFace Transformers](https://huggingface.co/transformers) — for model architecture and tokenizer support
+- [HuggingFace Model](https://huggingface.co/google-bert/bert-base-uncased) - for specific model use and pre-training information
 - [PyTorch](https://pytorch.org) — for training and model inference
 - [Flask](https://flask.palletsprojects.com) — for serving the backend API
 - [Flask-CORS](https://flask-cors.readthedocs.io) — for enabling cross-origin requests
 - [React](https://reactjs.org) — for building the frontend interface
 - [Create React App](https://create-react-app.dev) — for initializing the frontend project
+
+## References
+- Foundational Paper: Alarfaj, F. K., Ahmad, H., Khan, H. U., Alomair, A. M., Almusallam, N., & Ahmed, M. (2023). Twitter bot detection using diverse content features and applying machine learning algorithms. Sustainability, 15(8), 6662.
+- Contemporary Paper: Hannousse, A., & Talha, Z. (2024). A Hybrid Ensemble Learning Approach for Detecting Bots on Twitter. International Journal of Performability Engineering, 20(10).
