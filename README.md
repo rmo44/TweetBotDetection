@@ -39,6 +39,8 @@ TwitterBotDetector/ ├── backend/ # Flask backend and model │ ├── a
 
 ### 3. Set up the Python backend (using Conda recommended)
 - cd backend
+- (Windows Only): open a powershell terminal
+- (Mac Only): open a zsh terminal
 - conda create -n botdetector python=3.10 -y
 - conda activate botdetector
 - pip install -r ../requirements.txt
