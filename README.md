@@ -44,6 +44,7 @@ TwitterBotDetector/ ├── backend/ # Flask backend and model │ ├── a
 - conda create -n botdetector python=3.10 -y
 - conda activate botdetector
 - pip install -r ../requirements.txt
+- python -m spacy download en
 
 Then run the Flask API server:
 - python app.py
@@ -52,6 +53,7 @@ Then run the Flask API server:
 Open a new terminal window or tab:
 - cd frontend
 - npm install
+- npm install axios
 - npm start
 
 ## BERT Model Details
