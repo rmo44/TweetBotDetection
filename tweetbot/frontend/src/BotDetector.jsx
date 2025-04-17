@@ -1,13 +1,14 @@
-// src/BotDetector.jsx
 import React, { useState } from "react";
 import InputForm from "./components/InputForm";
 import PredictionOutput from "./components/PredictionOutput";
 import MetricDisplay from "./components/MetricDisplay";
-import VisualizationTabs from "./components/visualizations/VisualizationTabs";
+import ConfidenceView from "./components/visualizations/ConfidenceView";
+import ComparisonView from "./components/visualizations/ComparisonView";
+import ModelPerformanceView from "./components/visualizations/ModelPerformanceView";
 
 export default function BotDetector() {
   const [result, setResult] = useState(null);
-  const [activeView, setActiveView] = useState("basic"); // "basic", "visualization"
+  const [activeTab, setActiveTab] = useState("basic");
 
   return (
     <div className="flex flex-col items-center mt-12">
@@ -20,32 +21,54 @@ export default function BotDetector() {
 
       {result && (
         <div className="w-full max-w-4xl mt-8">
-          {/* Tab navigation */}
-          <div className="flex border-b mb-4">
-            <button
-              onClick={() => setActiveView("basic")}
-              className={`px-4 py-2 ${
-                activeView === "basic"
-                  ? "border-b-2 border-blue-500 text-blue-600"
-                  : "text-gray-600"
-              }`}
-            >
-              Basic Results
-            </button>
-            <button
-              onClick={() => setActiveView("visualization")}
-              className={`px-4 py-2 ${
-                activeView === "visualization"
-                  ? "border-b-2 border-blue-500 text-blue-600"
-                  : "text-gray-600"
-              }`}
-            >
-              Advanced Dashboard
-            </button>
+          {/* Tab navigation - CENTERED */}
+          <div className="flex justify-center border-b mb-4 w-full">
+            <div className="inline-flex">
+              <button
+                onClick={() => setActiveTab("basic")}
+                className={`px-4 py-2 text-white ${
+                  activeTab === "basic"
+                    ? "border-b-2 border-blue-500 bg-blue-600"
+                    : "bg-blue-500"
+                }`}
+              >
+                Basic Results
+              </button>
+              <button
+                onClick={() => setActiveTab("confidence")}
+                className={`px-4 py-2 text-white ${
+                  activeTab === "confidence"
+                    ? "border-b-2 border-blue-500 bg-blue-600"
+                    : "bg-blue-500"
+                }`}
+              >
+                Prediction Details
+              </button>
+              <button
+                onClick={() => setActiveTab("comparison")}
+                className={`px-4 py-2 text-white ${
+                  activeTab === "comparison"
+                    ? "border-b-2 border-blue-500 bg-blue-600"
+                    : "bg-blue-500"
+                }`}
+              >
+                Bot vs Human
+              </button>
+              <button
+                onClick={() => setActiveTab("model")}
+                className={`px-4 py-2 text-white ${
+                  activeTab === "model"
+                    ? "border-b-2 border-blue-500 bg-blue-600"
+                    : "bg-blue-500"
+                }`}
+              >
+                Model Performance
+              </button>
+            </div>
           </div>
 
           {/* Tab content */}
-          {activeView === "basic" ? (
+          {activeTab === "basic" && (
             <>
               <PredictionOutput 
                 prediction={result.prediction} 
@@ -53,8 +76,18 @@ export default function BotDetector() {
               />
               <MetricDisplay metrics={result.metrics} />
             </>
-          ) : (
-            <VisualizationTabs predictionData={result} />
+          )}
+          
+          {activeTab === "confidence" && (
+            <ConfidenceView predictionData={result} />
+          )}
+          
+          {activeTab === "comparison" && (
+            <ComparisonView predictionData={result} />
+          )}
+          
+          {activeTab === "model" && (
+            <ModelPerformanceView predictionData={result} />
           )}
         </div>
       )}
