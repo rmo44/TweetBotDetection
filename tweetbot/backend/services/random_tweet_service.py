@@ -4,11 +4,12 @@ from pathlib import Path
 
 class RandomTweetService:
     @staticmethod
-    def get_random_tweet():
+    def get_random_tweet(): # Define base and data directory path
         base_dir = Path(__file__).resolve().parent.parent
         data_dir = base_dir / "data"
 
-        human_path = data_dir / "clean_human_tweets.csv"
+        # Set paths to human and bot tweet CSV files
+        human_path = data_dir / "clean_human_tweets.csv"  
         bot_path = data_dir / "clean_bot_tweets.csv"
 
         try:
@@ -24,7 +25,8 @@ class RandomTweetService:
             df["text"] = df["text"].apply(
                 lambda t: eval(t).decode("utf-8", errors="ignore") if isinstance(t, str) and t.startswith("b'") else t
             )
-
+            
+            # Return the tweet text and its origin(bot or human)
             tweet = df.sample(1)["text"].values[0]
             return tweet, origin
 
